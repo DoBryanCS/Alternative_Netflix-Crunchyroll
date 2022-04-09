@@ -51,6 +51,7 @@
     <!-- liste -->
     <div class="section">
         <div class="row columns is-multiline is-mobile">
+            <!-- affiche la liste des items -->
             <TvshowsView v-for="t in paginatedData" v-bind:key="t.tvshowId" v-bind:tvshow="t" />
         </div>
     </div>
@@ -58,12 +59,16 @@
     <!-- pagination -->
     <div>
         <nav class="pagination" role="navigation" aria-label="pagination">
+            <!-- page precedent -->
             <button class="pagination-previous" v-on:click="prevPage">&lt;</button>
+            <!-- page suivante -->
             <button class="pagination-next" v-on:click="nextPage">&gt;</button>
             <ul class="pagination-list">
+                <!-- affiche le nombre approprier de page de navigation -->
                 <li v-for="p in pageCount">
                     <button class="pagination-link" @click="setPage(p - 1)" aria-label="page ">{{ p }}</button>
                 </li>
+                <!-- affiche le nombre approprier de page de navigation -->
             </ul>
         </nav>
     </div>
@@ -86,9 +91,11 @@ export default {
             filtreStudios: "",
             filtreGenres: [],
             filtreTitre: "",
+            //index par default du numer0 de page
             pageNumber: 0,
         };
     },
+    //sert a determiner combien d'item sera afficher sur la page
     props: {
         size: {
             type: Number,
@@ -97,6 +104,7 @@ export default {
         },
     },
     computed: {
+        //sert a definir le nombre de button pour la pagination
         pageCount() {
             let l = this.tv.length,
                 s = this.size;
@@ -113,16 +121,20 @@ export default {
             if (this.filtreTitre !== "") {
                 tvFiltres = tvFiltres.filter((t) => t.title.toLowerCase().includes(this.filtreTitre.toLowerCase()));
             }
+
+            //sert a delimiter le premier et le dernier item de la page courante
             const start = this.pageNumber * this.size,
                 end = start + this.size;
             return tvFiltres.slice(start, end);
         },
     },
+    // la fonction mounted sera exécutée au chargement de la vue
     mounted() {
         this.getTv();
         this.getGenres();
         this.getStudios();
     },
+    // methods contient les méthodes (fonctions) propres à la vue
     methods: {
         async getTv() {
             const rep = await fetch(`${svrURL}/tvshows`);
