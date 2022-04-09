@@ -39,12 +39,10 @@
                     <p class="panel-heading" > Genres </p>
                     <div class="panel-block" >
                         <div class="columns is-mobile is-multiline" >
-                            <div class="column is-2" id="genres"
-                                        v-for="g in genres"
-                                        >
-                                        
+                            <div class="column is-2"
+                                        v-for="g in genres">
                                 <label class="checkbox label" >
-                                    <input type="checkbox" v-model="filtreGenres"
+                                    <input type="checkbox"  v-model="filtreGenres"
                                                             v-bind:key="g.genreId"
                                                             v-bind:value="g.genreId">
                                     {{ g.name }} 
@@ -56,35 +54,13 @@
             </div>
             <div class="section">
                 <div class="row columns is-multiline is-mobile" >
-                    <div v-for="t in tvFiltres"
-                         v-bind:key="t.tvshowId"
-                         class="column is-3-desktop is-4-tablet is-6-mobile">
-                            <div class="card has-text-black">
-                                <div class="card-image">
-                                    <figure class="image is-2by3">
-                                        <img v-bind:alt="t.title" v-bind:src="t.imgURL">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
-                                    <div class="content has-text-centered">
-                                        <p class="title is-3" style="color: black; min-height: 72px;">
-                                            {{ t.title }}
-                                        </p>
-                                        <div class="mb-0">
-                                            <span class="has-text-weight-bold">Studio: </span>
-                                            <span>{{ t.studio.name }}</span>
-                                        </div>
-                                        <div class="mb-0">
-                                            <span class="has-text-weight-bold">Genres: </span>
-                                            <span>{{ t.genres.map((e) => e.name).join(', ') }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
+                    <TvshowsView 
+                        v-for="t in tvFiltres"
+                        v-bind:key="t.tvshowId"
+                        v-bind:tvshow="t"/>
                 </div>
             </div>
-                <div >
+                <div>
                     <nav class="pagination" role="navigation" aria-label="pagination" >
                         <button class="pagination-previous" >&lt;</button>
                         <button class="pagination-next" >&gt;</button>
@@ -110,8 +86,10 @@
 <script>
 /* eslint-disable */
 import { svrURL } from '@/constants';
+import TvshowsView from '@/components/TvshowsView.vue';
 export default {
     name: 'HomeView',
+    components: { TvshowsView },
     data() {
         return {
             tv: [],
@@ -151,7 +129,7 @@ export default {
         this.getTv();
         this.getGenres();
         this.getStudios();
-        console.log(this.tv)
+        console.log(this.filtreGenres)
     },
     methods: {
         async getTv() {
