@@ -159,9 +159,15 @@ export default {
         },
         nextPage() {
             this.pageNumber++;
+            if(this.pageNumber >= this.pageCount){
+                this.pageNumber--;
+            }
         },
         prevPage() {
             this.pageNumber--;
+            if(this.pageNumber <=-1){
+                this.pageNumber++;
+            }
         },
     },
 };

@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="columns is-mobile is-multiline scrolling-wrapper-flexbox" >
+                        <div class="columns is-mobile is-multiline scrolling-wrapper-flexbox">
                             <div class="column is-2" v-for="r in tvshow.roles">
                                 <div class="card">
                                     <div class="card-image">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
 </template>
@@ -109,4 +109,11 @@ export default {
 </script>
 
 <style scoped>
+
+.scrolling-wrapper-flexbox{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
 </style>
