@@ -8,23 +8,9 @@
                 <h1 class="title is-1 has-text-centered">{{ episode.seasonNumber }}</h1>
                 <div class="container">
                     <div class="columns is-multiline is-mobile">
-                        <div class="column is-3-desktop is-4-tablet is-12-mobile" v-for="e in paginatedData">
-                            <router-link v-bind:to="{ name: 'detailsEpisode', params: { episodeId: parseInt(e.episodeId) } }">
-                                <div class="card">
-                                    <div class="card-image">
-                                        <figure class="image is-16by9">
-                                            <img v-bind:alt="e.title" v-bind:src="e.imgURL" />
-                                        </figure>
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="content has-text-centered">
-                                            <h4 class="title is-4 mb-0">{{ e.title }}</h4>
-                                            <div>{{ e.number }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </router-link>
-                        </div>
+                        <EpisodesView v-for="e in paginatedData" v-bind:key="e.episodeId" v-bind:s="e" />
+                            
+                        
                     </div>
                     <div>
                         <nav class="pagination" role="navigation" aria-label="pagination">
@@ -53,10 +39,13 @@
 <script>
 /* eslint-disable */
 import { svrURL } from "@/constants";
+import EpisodesView from '@/components/EpisodesView.vue';
 
 export default {
     name: "SeasonEpisodesView",
-
+    components: {
+        EpisodesView,
+    },
     data() {
         return {
             episode: [],

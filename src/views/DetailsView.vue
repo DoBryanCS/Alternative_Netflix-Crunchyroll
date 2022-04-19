@@ -16,7 +16,7 @@
                                     </div>
                                     <h5 class="column is-12" >{{ tvshow.year }}</h5>
                                     <div class="column is-2" >
-                                        <p >{{ tvshow.episodeCount }}</p>
+                                        <p >{{ tvshow.episodeCount }} épisodes</p>
                                     </div>
                                     <div class="column is-2" >
                                         <p >{{ tvshow.tvParentalGuideline }}</p>
@@ -37,45 +37,13 @@
                             </div>
                         </div>
                         <div class="columns is-mobile is-multiline scrolling-wrapper-flexbox">
-                            <div class="column is-2" v-for="r in tvshow.roles">
-                                <div class="card">
-                                    <div class="card-image">
-                                        <figure class="image is-3by4">
-                                            <img v-bind:src="r.imgURL">
-                                        </figure>
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="content has-text-centered">
-                                            <div class="has-text-weight-bold">{{ r.name }}</div>
-                                            <div>{{ r.character }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ActeursView v-for="r in roles" v-bind:key="r.roleId" v-bind:roles="r" />
                         </div>
                         <div class="columns is-mobile is-multiline scrolling-wrapper-flexbox" >
-                            <div class="column is-3" v-for="s in tvshow.seasons">
-                                <router-link
-                                    v-bind:to="{ name: 'episodes',
-                                        params: { seasonId: parseInt(s.seasonId) }}">
-                                    <div class="card">
-                                        <div class="card-image">
-                                            <figure class="image is-3by4">
-                                                <img v-bind:alt="s.seasonId" v-bind:src="s.imgURL">
-                                            </figure>
-                                        </div>
-                                        <div class="card-content">
-                                            <div class="content has-text-centered">
-                                                <h4 class="title is-4"> Season {{ s.number }}</h4>
-                                                <div>{{ s.count }}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </router-link>
-                            </div>
+                            <SeasonsView v-for="s in seasons" v-bind:key="s.roleId" v-bind:seasons="s" />
                         </div>
                     </div>
-
+                    <p style="margin-bottom: 50px">&nbsp;</p>
                 </div>
             </div>
 </template>
@@ -83,13 +51,20 @@
 <script>
 /* eslint-disable object-curly-newline */
 import { svrURL } from '@/constants';
-
+import ActeursView from '@/components/ActeursView.vue';
+import SeasonsView from '@/components/SeasonsView.vue';
 // noinspection JSUnusedGlobalSymbols
 export default {
     name: 'DetailsView',
+    components: {
+        ActeursView,
+        SeasonsView,
+    },
     data() {
         return {
             tvshow: null,
+            roles: [],
+            seasons: [],
         };
     },
     mounted() {
@@ -102,6 +77,8 @@ export default {
             const rep = await fetch(`${svrURL}/tvshow?tvshowId=${this.$route.params.tvshowId}`);
             if (rep.ok) {
                 this.tvshow = await rep.json();
+                this.roles = this.tvshow.roles;
+                this.seasons = this.tvshow.seasons;
             }
         },
     },

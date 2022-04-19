@@ -10,13 +10,14 @@
                     <span > - </span>
                     <span >{{ detailsEpisode.title }}</span>
                 </h3>
-                <p >{{ detailsEpisode.runtime }}</p>
+                <p >{{ detailsEpisode.runtime }} mins</p>
                 <p >{{ detailsEpisode.tvParentalGuideline }}</p>
                 <p class="has-text-justified" >
                     {{ detailsEpisode.plot }}
                 </p>
                 <div class="has-text-centered"  style="padding-top: 50px;">
                     <img v-bind:alt="detailsEpisode.title" v-bind:src="detailsEpisode.imgURL"  style="position: relative;">
+                    <img id="somelement" alt="play" src="../../public/images/play.9fcb8068.png">
                 </div>
             </div>
             <p style="margin-bottom: 50px;">&nbsp;</p>
@@ -51,4 +52,9 @@ export default {
 </script>
 
 <style scoped>
+#somelement{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 </style>
