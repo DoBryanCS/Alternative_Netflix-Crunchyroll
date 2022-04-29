@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
+import LoginView from '@/views/LoginView.vue';
 import DetailsView from '@/views/DetailsView.vue';
 import SeasonEpisodesView from '@/views/SeasonEpisodesView.vue';
 import DetailsEpisodeView from '@/views/DetailsEpisodeView.vue';
@@ -9,6 +10,11 @@ const routes = [
         path: '/',
         name: 'home',
         component: HomeView,
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: LoginView,
     },
     {
         path: '/details/:tvshowId',
