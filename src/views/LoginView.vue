@@ -3,6 +3,9 @@
     <div class="section" role="form">
         <h1 class="title is-1 has-text-centered">Login</h1>
         <!---->
+        <div id="login-error-msg-holder">
+            <div id="login-error-msg" v-for="(error, index) in error" :key="index">{{ error }}</div>
+        </div>
         <div class="field">
             <label class="label" for="username">Username
             </label>
@@ -62,6 +65,7 @@ export default {
             password: '',
             errorsUsername:[],
             errorsPassword:[],
+            error:[],
         };
     },
     methods: {
@@ -71,6 +75,7 @@ export default {
         async obtenirJeton() {
             this.errorsUsername = [];
             this.errorsPassword = [];
+            this.error = [];
             if (this.username == "") {
                 this.errorsUsername.push("Le username est obligatoire");
             }
@@ -93,6 +98,7 @@ export default {
                     this.$router.push('/');
                 } else {
                     this.$root.$data.token = '';
+                    this.error.push("Mauvaise authentification");
                 }
             }
         },
@@ -101,6 +107,13 @@ export default {
 </script>
 
 <style scoped>
+#login-error-msg-holder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
 #login-error-msg {
   width: 23%;
   text-align: center;
