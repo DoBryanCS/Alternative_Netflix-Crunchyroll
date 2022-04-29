@@ -85,15 +85,20 @@ export default {
             if (this.email == "") {
                 this.errorsEmail.push("Email is empty");
             }
+            else if (!this.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                this.errorsEmail.push("L'email doit suivre la forme suivante: 'anystring@anystring.anystring'");
+            }
             if (this.password == "") {
                 this.errorsPassword.push("Password is empty");
-            } else {
-                if (this.password.length < 6 || this.password.length > 30) {
-                    this.errorsPassword.push("Le mot de passe doit contenir entre 6 et 30 caractères. ");
-                }
+            } 
+            else if (this.password.length < 6 || this.password.length > 30) {
+                this.errorsPassword.push("Le mot de passe doit contenir entre 6 et 30 caractères.");
             }
             if (this.confirm == "") {
                 this.errorsConfirmPassword.push("Confirm is empty");
+            } 
+            else if (this.confirm != this.password){
+                this.errorsConfirmPassword.push("Le mot de passe de confirmation doit être identique au mot de passe.");
             }
             else {
                 const bodyContent = JSON.stringify({
@@ -117,13 +122,6 @@ export default {
 </script>
 
 <style scoped>
-#login-error-msg-holder {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
 #login-error-msg {
   width: 23%;
   text-align: center;
