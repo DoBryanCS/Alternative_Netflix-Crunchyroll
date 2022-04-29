@@ -79,7 +79,7 @@ export default {
             } 
             else {
                 const bodyContent = JSON.stringify({
-                    email: this.email,
+                    username: this.username,
                     password: this.password,
                 });
                 const response = await fetch(`${svrURL}/auth/token`, {
@@ -90,7 +90,7 @@ export default {
                 if (response.ok) {
                     const data = await response.json();
                     this.$root.$data.token = data.token;
-                    this.$router.push('/favorites');
+                    this.$router.push('/');
                 } else {
                     this.$root.$data.token = '';
                 }

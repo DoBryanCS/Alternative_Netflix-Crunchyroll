@@ -44,7 +44,7 @@
         </div>
         <div class="field">
             <div class="control">
-                <button class="button is-success" v-on:click.prevent="Inscrire">Sign Up</button>
+                <button class="button is-success" v-on:click="Inscrire">Sign Up</button>
                 <button class="button is-danger" v-on:click="annuler">Annuler</button>
             </div>
         </div>
@@ -106,7 +106,8 @@ export default {
                     username: this.username,
                     password: this.password,
                 });
-                const response = await fetch(`${svrURL}/auth/register`, {
+                console.log(bodyContent)
+                const response = await fetch(`${svrURL}/auth/register/`, {
                     method: "POST",
                     body: bodyContent,
                     headers: { "Content-Type": "application/json" },
