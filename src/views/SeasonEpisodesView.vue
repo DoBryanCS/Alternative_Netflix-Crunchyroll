@@ -9,8 +9,8 @@
                 <div class="container">
                     <div class="columns is-multiline is-mobile">
                         <EpisodesView v-for="e in paginatedData" v-bind:key="e.episodeId" v-bind:s="e" />
-                            
-                        
+
+
                     </div>
                     <div>
                         <nav class="pagination" role="navigation" aria-label="pagination">
