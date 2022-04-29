@@ -2,15 +2,15 @@
     <!-- eslint-disable -->
     <div class="section" role="form">
         <h1 class="title is-1 has-text-centered">Sign Up</h1>
-
         <div class="field">
             <label class="label" for="email">Email </label>
             <div class="control has-icons-left">
-                <input id="email" v-model="email" class="input" placeholder="e1234567@site.com" required />
+                <input type="email" v-model="email" class="input" placeholder="e1234567@site.com" required />
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
             </div>
+            <div id="login-error-msg" v-for="(error, index) in errorsEmail" :key="index">{{ error }}</div>
         </div>
         <div class="field">
             <label class="label" for="username">Username </label>
@@ -20,7 +20,7 @@
                     <i class="fa fa-envelope"></i>
                 </span>
             </div>
-            <div>{{ errors.username }}</div>
+            <div id="login-error-msg" v-for="(error, index) in errorsUsername" :key="index">{{ error }}</div>
         </div>
         <div class="field">
             <label class="label" for="password">Mot de passe</label>
@@ -30,6 +30,7 @@
                     <i class="fa fa-lock"></i>
                 </span>
             </div>
+            <div id="login-error-msg" v-for="(error, index) in errorsPassword" :key="index">{{ error }}</div>
         </div>
         <div class="field">
             <label class="label" for="confirm">Confirmer mot de passe</label>
@@ -39,10 +40,11 @@
                     <i class="fa fa-lock"></i>
                 </span>
             </div>
+            <div id="login-error-msg" v-for="(error, index) in errorsConfirmPassword" :key="index">{{ error }}</div>
         </div>
         <div class="field">
             <div class="control">
-                <button class="button is-success" v-on:click.prevent="obtenirJeton">Sign Up</button>
+                <button class="button is-success" v-on:click.prevent="Inscrire">Sign Up</button>
                 <button class="button is-danger" v-on:click="annuler">Annuler</button>
             </div>
         </div>
@@ -61,7 +63,10 @@ export default {
             username: "",
             password: "",
             confirm: "",
-            errors: {},
+            errorsEmail:[],
+            errorsUsername:[],
+            errorsPassword:[],
+            errorsConfirmPassword:[],
         };
     },
     methods: {
@@ -69,26 +74,66 @@ export default {
             this.$router.push("/");
         },
 
-        async obtenirJeton() {
-            const bodyContent = JSON.stringify({
-                email: this.email,
-                password: this.password,
-            });
-            const response = await fetch(`${svrURL}/auth/token`, {
-                method: "POST",
-                body: bodyContent,
-                headers: { "Content-Type": "application/json" },
-            });
-            if (response.ok) {
-                const data = await response.json();
-                this.$root.$data.token = data.token;
-                this.$router.push("/favorites");
+        async Inscrire() {
+            this.errorsUsername = [];
+            this.errorsEmail = [];
+            this.errorsPassword = [];
+            this.errorsConfirmPassword = [];
+            if (this.username == "") {
+                this.errorsUsername.push("Username is empty");
+            }
+            if (this.email == "") {
+                this.errorsEmail.push("Email is empty");
+            }
+            if (this.password == "") {
+                this.errorsPassword.push("Password is empty");
             } else {
-                this.$root.$data.token = "";
+                if (this.password.length < 6 || this.password.length > 30) {
+                    this.errorsPassword.push("Le mot de passe doit contenir entre 6 et 30 caractères. ");
+                }
+            }
+            if (this.confirm == "") {
+                this.errorsConfirmPassword.push("Confirm is empty");
+            }
+            else {
+                const bodyContent = JSON.stringify({
+                    email: this.email,
+                    username: this.username,
+                    password: this.password,
+                });
+                const response = await fetch(`${svrURL}/auth/register`, {
+                    method: "POST",
+                    body: bodyContent,
+                    headers: { "Content-Type": "application/json" },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    this.$router.push("/login");
+                }
             }
         },
     },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#login-error-msg-holder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+#login-error-msg {
+  width: 23%;
+  text-align: center;
+  margin: 0;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #8a0000;
+  border: 1px solid #8a0000;
+  background-color: #e58f8f;
+  opacity: 1;
+}
+</style>
