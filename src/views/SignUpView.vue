@@ -80,22 +80,22 @@ export default {
             this.errorsPassword = [];
             this.errorsConfirmPassword = [];
             if (this.username == "") {
-                this.errorsUsername.push("Username is empty");
+                this.errorsUsername.push("Le username est obligatoire");
             }
             if (this.email == "") {
-                this.errorsEmail.push("Email is empty");
+                this.errorsEmail.push("L'email est obligatoire");
             }
             else if (!this.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
                 this.errorsEmail.push("L'email doit suivre la forme suivante: 'anystring@anystring.anystring'");
             }
             if (this.password == "") {
-                this.errorsPassword.push("Password is empty");
+                this.errorsPassword.push("Le mot de passe est obligatoire");
             } 
             else if (this.password.length < 6 || this.password.length > 30) {
                 this.errorsPassword.push("Le mot de passe doit contenir entre 6 et 30 caractères.");
             }
             if (this.confirm == "") {
-                this.errorsConfirmPassword.push("Confirm is empty");
+                this.errorsConfirmPassword.push("La confirmation du mot de passe est obligatoire");
             } 
             else if (this.confirm != this.password){
                 this.errorsConfirmPassword.push("Le mot de passe de confirmation doit être identique au mot de passe.");
