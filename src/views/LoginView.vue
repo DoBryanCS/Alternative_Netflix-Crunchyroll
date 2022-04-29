@@ -43,17 +43,17 @@ export default {
     name: "LoginView",
     data() {
         return {
-            username: '',
-            password: '',
-            errorsUsername:[],
-            errorsPassword:[],
-            error:[],
+            username: "",
+            password: "",
+            errorsUsername: [],
+            errorsPassword: [],
+            error: [],
         };
     },
     mounted() {
         console.log(this.$store.state.username);
         this.username = this.$store.state.username;
-        this.$store.state.username = '';
+        this.$store.state.username = "";
     },
     methods: {
         annuler() {
@@ -81,9 +81,10 @@ export default {
                 if (response.ok) {
                     const data = await response.json();
                     this.$root.$data.token = data.token;
+                    this.$store.state.token = this.$root.$data.toke;
                     this.$router.push("/");
                 } else {
-                    this.$root.$data.token = '';
+                    this.$root.$data.token = "";
                     this.error.push("Mauvaise authentification");
                 }
             }
@@ -94,11 +95,11 @@ export default {
 
 <style scoped>
 #login-error-msg-holder {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
 }
 #login-error-msg {
     width: 23%;

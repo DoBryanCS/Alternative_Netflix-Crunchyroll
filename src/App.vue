@@ -1,32 +1,32 @@
 <template>
     <div>
-        <MenuView/>
-        <router-view/>
+        <MenuView />
+        <router-view />
     </div>
 </template>
 
 <script>
-
-import MenuView from '@/components/MenuView.vue';
+/* eslint-disable*/
+import MenuView from "@/components/MenuView.vue";
 
 export default {
-    name: 'App',
+    name: "App",
     components: { MenuView },
     data() {
         return {
-            token: '',
+            token: "",
         };
     },
     mounted() {
-        const t = sessionStorage.getItem('token');
+        const t = sessionStorage.getItem("token");
         if (t) {
-            this.token = t;
+            this.$store.state.token = t;
         }
     },
     watch: {
         token(newToken) {
             console.log(`setting token: ${newToken}`);
-            sessionStorage.setItem('token', newToken);
+            sessionStorage.setItem("token", newToken);
         },
     },
 };
