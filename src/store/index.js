@@ -1,8 +1,9 @@
-import { createStore } from 'vuex';
+/* eslint-disable */
+import { createStore } from "vuex";
 
 export default createStore({
     state: {
-        username: '',
+        username: "",
     },
     getters: {},
     mutations: {},
