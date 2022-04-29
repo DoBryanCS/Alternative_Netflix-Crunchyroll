@@ -120,7 +120,6 @@ export default {
                     this.$store.state.username = this.username;
                     console.log(this.$store.state.username)
                     this.$router.push("/login");
-
                 }
             }
         },
@@ -142,3 +141,8 @@ export default {
   opacity: 1;
 }
 </style>
+
+
+
+
+

@@ -2,11 +2,10 @@
     <!-- eslint-disable -->
     <div class="section" role="form">
         <h1 class="title is-1 has-text-centered">Login</h1>
-
+        </div>
         <div class="field">
             <label class="label" for="username">Username </label>
             <div class="control has-icons-left">
-                <input id="username" v-model="username" autocomplete="username" class="input" placeholder="e1234567" required />
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
@@ -40,10 +39,11 @@ export default {
     name: "LoginView",
     data() {
         return {
-            username: "",
-            password: "",
-            errorsUsername: [],
-            errorsPassword: [],
+            username: '',
+            password: '',
+            errorsUsername:[],
+            errorsPassword:[],
+            error:[],
         };
     },
     mounted() {
@@ -58,6 +58,7 @@ export default {
         async obtenirJeton() {
             this.errorsUsername = [];
             this.errorsPassword = [];
+            this.error = [];
             if (this.username == "") {
                 this.errorsUsername.push("Le username est obligatoire");
             }
@@ -78,7 +79,8 @@ export default {
                     this.$root.$data.token = data.token;
                     this.$router.push("/");
                 } else {
-                    this.$root.$data.token = "";
+                    this.$root.$data.token = '';
+                    this.error.push("Mauvaise authentification");
                 }
             }
         },
@@ -87,6 +89,13 @@ export default {
 </script>
 
 <style scoped>
+#login-error-msg-holder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
 #login-error-msg {
     width: 23%;
     text-align: center;
