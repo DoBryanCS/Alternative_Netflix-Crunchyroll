@@ -6,6 +6,8 @@ import AboutView from '@/views/AboutView.vue';
 import DetailsView from '@/views/DetailsView.vue';
 import SeasonEpisodesView from '@/views/SeasonEpisodesView.vue';
 import DetailsEpisodeView from '@/views/DetailsEpisodeView.vue';
+import HistoryView from '@/views/HistoryView.vue';
+import ProfileView from '@/views/ProfileView.vue';
 
 const routes = [
     {
@@ -27,6 +29,16 @@ const routes = [
         path: '/about',
         name: 'about',
         component: AboutView,
+    },
+    {
+        path: '/history',
+        name: 'history',
+        component: HistoryView,
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: ProfileView,
     },
     {
         path: '/details/:tvshowId',

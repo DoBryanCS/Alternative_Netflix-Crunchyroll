@@ -15,11 +15,25 @@
                 </router-link>
             </div>
             <div class="navbar-end">
-                <a href="/signup" class="navbar-item"> Sign Up </a>
+                <router-link v-if="this.$root.$data.token === ''"
+                                     class="navbar-item"
+                                     v-bind:to="{ name: 'signup' }">
+                    Sign up
+                </router-link>
                 <router-link v-if="this.$root.$data.token === ''"
                                      class="navbar-item"
                                      v-bind:to="{ name: 'login' }">
                     Login
+                </router-link>
+                <router-link v-if="this.$root.$data.token !== ''"
+                                class="navbar-item"
+                                v-bind:to="{ name: 'history' }">
+                    History
+                </router-link>
+                <router-link v-if="this.$root.$data.token !== ''"
+                                class="navbar-item"
+                                v-bind:to="{ name: 'profile' }">
+                    Profile
                 </router-link>
                 <button v-if="this.$root.$data.token !== ''"
                                 class="navbar-item button is-danger"
@@ -29,7 +43,11 @@
                 <!---->
                 <!---->
                 <!---->
-                <a href="/about" class="navbar-item"> About </a>
+                <router-link
+                                class="navbar-item"
+                                v-bind:to="{ name: 'about' }">
+                    About
+                </router-link>
             </div>
         </div>
     </nav>
