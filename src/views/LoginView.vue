@@ -2,10 +2,14 @@
     <!-- eslint-disable -->
     <div class="section" role="form">
         <h1 class="title is-1 has-text-centered">Login</h1>
+        <!---->
+        <div id="login-error-msg-holder">
+            <div id="login-error-msg" v-for="(error, index) in error" :key="index">{{ error }}</div>
         </div>
         <div class="field">
             <label class="label" for="username">Username </label>
             <div class="control has-icons-left">
+                <input id="username" v-model="username" autocomplete="username" class="input" placeholder="e1234567" required />
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
