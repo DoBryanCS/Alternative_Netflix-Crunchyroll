@@ -82,6 +82,9 @@ export default {
             if (this.username == "") {
                 this.errorsUsername.push("Le username est obligatoire");
             }
+            else if (!this.username.match(/^([A-Za-z][A-Za-z0-9_]{4,19})$/)) {
+                this.errorsUsername.push("	Le username doit contenir entre 5 et 20 caractères et doit être composés de lettres majuscules, minuscule, de chiffre et/ou du caractère souligné (_)");
+            }
             if (this.email == "") {
                 this.errorsEmail.push("L'email est obligatoire");
             }
@@ -90,13 +93,13 @@ export default {
             }
             if (this.password == "") {
                 this.errorsPassword.push("Le mot de passe est obligatoire");
-            } 
+            }
             else if (this.password.length < 6 || this.password.length > 30) {
                 this.errorsPassword.push("Le mot de passe doit contenir entre 6 et 30 caractères.");
             }
             if (this.confirm == "") {
                 this.errorsConfirmPassword.push("La confirmation du mot de passe est obligatoire");
-            } 
+            }
             else if (this.confirm != this.password){
                 this.errorsConfirmPassword.push("Le mot de passe de confirmation doit être identique au mot de passe.");
             }
@@ -114,7 +117,9 @@ export default {
                 });
                 if (response.ok) {
                     const data = await response.json();
+                    $store.state.username = this.username;
                     this.$router.push("/login");
+
                 }
             }
         },

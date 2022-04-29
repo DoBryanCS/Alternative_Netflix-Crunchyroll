@@ -76,7 +76,7 @@ export default {
             }
             if (this.password == "") {
                 this.errorsPassword.push("Le mot de passe est obligatoire");
-            } 
+            }
             else {
                 const bodyContent = JSON.stringify({
                     username: this.username,
