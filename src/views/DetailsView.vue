@@ -7,7 +7,7 @@
                             <div class="column is-5" >
                                 <img v-bind:alt="tvshow.title" v-bind:src="tvshow.imgURL">
                             </div>
-                            <div class="column is-7" >
+                            <div class="column is-7"  role="details">
                                 <div class="columns is-multiline" >
                                     <div class="column is-8" >
                                         <h2 class="title is-2" >{{ tvshow.title }}</h2>

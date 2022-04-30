@@ -17,27 +17,27 @@
             <div class="navbar-end">
                 <router-link v-if="this.$root.$data.token === ''"
                                      class="navbar-item"
-                                     v-bind:to="{ name: 'signup' }">
+                                     v-bind:to="{ name: 'signup' }" alt="sign up">
                     Sign up
                 </router-link>
                 <router-link v-if="this.$root.$data.token === ''"
                                      class="navbar-item"
-                                     v-bind:to="{ name: 'login' }">
+                                     v-bind:to="{ name: 'login' }" alt="login">
                     Login
                 </router-link>
                 <router-link v-if="this.$root.$data.token !== ''"
                                 class="navbar-item"
-                                v-bind:to="{ name: 'history' }">
+                                v-bind:to="{ name: 'history' }" alt="history">
                     History
                 </router-link>
                 <router-link v-if="this.$root.$data.token !== ''"
                                 class="navbar-item"
-                                v-bind:to="{ name: 'profile' }">
+                                v-bind:to="{ name: 'profile' }" alt="profil">
                     Profile
                 </router-link>
                 <button v-if="this.$root.$data.token !== ''"
                                 class="navbar-item button is-danger"
-                                v-on:click="logout">
+                                v-on:click="logout" alt="log out" aria-describedby="logOut">
                     Logout
                 </button>
                 <!---->
@@ -50,6 +50,7 @@
                 </router-link>
             </div>
         </div>
+        <span id="logOut" hidden>se deconnecter du compte utilisateur</span>
     </nav>
 </template>
 

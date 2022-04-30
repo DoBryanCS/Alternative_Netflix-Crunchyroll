@@ -2,10 +2,10 @@
     <!-- eslint-disable -->
     <!-- filtre -->
     <div class="section">
-        <div class="columns is-centered">
+        <div class="columns is-centered" role="filtre">
             <div class="field is-horizontal" style="padding-left: 20px">
                 <div class="field-label is-normal">
-                    <label for="seriesTitle" class="label">Title:</label>
+                    <label for="seriesTitle" class="label" alt="title">Title:</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
@@ -17,7 +17,7 @@
             </div>
             <div class="field is-horizontal" style="padding-left: 20px">
                 <div class="field-label is-normal">
-                    <label for="studios" class="label">Studio:</label>
+                    <label for="studios" class="label" alt="studio">Studio:</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
@@ -38,7 +38,7 @@
             <div class="panel-block">
                 <div class="columns is-multiline is-mobile">
                     <div v-for="g in genres" v-bind:key="g.genreId" class="column is-2">
-                        <label class="checkbox">
+                        <label class="checkbox" role="checkbox">
                             <input type="checkbox" name="genre" v-model="filtreGenres" v-bind:value="g.genreId" />
                             {{ g.name }}
                         </label>
@@ -49,7 +49,7 @@
     </div>
     <!-- filtre -->
     <!-- liste -->
-    <div class="section">
+    <div class="section" role="liste">
         <div class="row columns is-multiline is-mobile">
             <!-- affiche la liste des items -->
             <TvshowsView v-for="t in paginatedData" v-bind:key="t.tvshowId" v-bind:tvshow="t" />
@@ -57,7 +57,7 @@
     </div>
     <!-- liste -->
     <!-- pagination -->
-    <div>
+    <div role="pagination">
         <nav class="pagination" role="navigation" aria-label="pagination">
             <!-- page precedent -->
             <button class="pagination-previous" v-on:click="prevPage">&lt;</button>
