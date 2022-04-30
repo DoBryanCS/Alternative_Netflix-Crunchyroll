@@ -15,9 +15,9 @@
                     <div>
                         <nav class="pagination" role="navigation" aria-label="pagination">
                             <!-- page precedent -->
-                            <button class="pagination-previous" v-on:click="prevPage">&lt;</button>
+                            <button class="pagination-previous" v-on:click="prevPage" role="button">&lt;</button>
                             <!-- page suivante -->
-                            <button class="pagination-next" v-on:click="nextPage">&gt;</button>
+                            <button class="pagination-next" v-on:click="nextPage" role="button">&gt;</button>
                             <ul class="pagination-list">
                                 <!-- affiche le nombre approprier de page de navigation -->
                                 <li v-for="p in pageCount">

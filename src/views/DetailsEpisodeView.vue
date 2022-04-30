@@ -2,7 +2,7 @@
  <!-- eslint-disable -->
     <div id="app" class="container"  v-if="detailsEpisode !== null">
         <div>
-            <div class="block" >
+            <div class="block"  role="details">
                 <h1 class="title is-3 has-text-centered" >{{ detailsEpisode.tvshowTitle }}</h1>
                 <h3 class="title is-3 has-text-centered" >{{ detailsEpisode.seasonNumber }}
                     <span > - </span>

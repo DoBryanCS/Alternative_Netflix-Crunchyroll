@@ -2,40 +2,40 @@
     <!-- eslint-disable -->
     <div class="section" role="form">
         <h1 class="title is-1 has-text-centered">Sign Up</h1>
-        <div class="field">
+        <div class="field" role="email input">
             <label class="label" for="email">Email </label>
             <div class="control has-icons-left">
-                <input type="email" v-model="email" class="input" placeholder="e1234567@site.com" required />
+                <input type="email" v-model="email" class="input" placeholder="e1234567@site.com" alt="email" required aria-required="true"/>
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
             </div>
             <div id="login-error-msg" v-for="(error, index) in errorsEmail" :key="index">{{ error }}</div>
         </div>
-        <div class="field">
+        <div class="field" role="username input">
             <label class="label" for="username">Username </label>
             <div class="control has-icons-left">
-                <input id="username" v-model="username" class="input" placeholder="e1234567" required />
+                <input id="username" v-model="username" class="input" placeholder="e1234567" alt="username" required aria-required="true"/>
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
             </div>
             <div id="login-error-msg" v-for="(error, index) in errorsUsername" :key="index">{{ error }}</div>
         </div>
-        <div class="field">
+        <div class="field" role="password input">
             <label class="label" for="password">Mot de passe</label>
             <div class="control has-icons-left">
-                <input id="password" v-model="password" class="input" placeholder="*******" type="password" required />
+                <input id="password" v-model="password" class="input" placeholder="*******" type="password" alt="password" required  aria-required="true"/>
                 <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                 </span>
             </div>
             <div id="login-error-msg" v-for="(error, index) in errorsPassword" :key="index">{{ error }}</div>
         </div>
-        <div class="field">
+        <div class="field" role="confirmation input">
             <label class="label" for="confirm">Confirmer mot de passe</label>
             <div class="control has-icons-left">
-                <input id="confirm" v-model="confirm" class="input" placeholder="*******" type="password" required />
+                <input id="confirm" v-model="confirm" class="input" placeholder="*******" type="password" alt="password confirmation" required aria-required="true"/>
                 <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                 </span>
@@ -44,8 +44,8 @@
         </div>
         <div class="field">
             <div class="control">
-                <button class="button is-success" v-on:click="Inscrire">Sign Up</button>
-                <button class="button is-danger" v-on:click="annuler">Annuler</button>
+                <button class="button is-success" v-on:click="Inscrire" role="button">Sign Up</button>
+                <button class="button is-danger" v-on:click="annuler" role="button">Annuler</button>
             </div>
         </div>
     </div>

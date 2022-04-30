@@ -6,30 +6,30 @@
         <div id="login-error-msg-holder">
             <div id="login-error-msg" v-for="(error, index) in error" :key="index">{{ error }}</div>
         </div>
-        <div class="field">
+        <div class="field" role="username">
             <label class="label" for="username">Username </label>
             <div class="control has-icons-left">
-                <input id="username" v-model="username" autocomplete="username" class="input" placeholder="e1234567" required />
+                <input id="username" v-model="username" autocomplete="username" class="input" placeholder="e1234567" alt="username" required aria-required="true" />
                 <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                 </span>
             </div>
             <div id="login-error-msg" v-for="(error, index) in errorsUsername" :key="index">{{ error }}</div>
         </div>
-        <div class="field">
+        <div class="field" role="password">
             <label class="label" for="password">Mot de passe</label>
             <div class="control has-icons-left">
-                <input id="password" v-model="password" autocomplete="password" class="input" placeholder="*******" type="password" required />
+                <input id="password" v-model="password" autocomplete="password" class="input" placeholder="*******" type="password" alt="password" required aria-required="true"/>
                 <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                 </span>
             </div>
             <div id="login-error-msg" v-for="(error, index) in errorsPassword" :key="index">{{ error }}</div>
         </div>
-        <div class="field">
+        <div class="field" >
             <div class="control">
-                <button class="button is-success" v-on:click.prevent="obtenirJeton">Connexion</button>
-                <button class="button is-danger" v-on:click="annuler">Annuler</button>
+                <button class="button is-success" v-on:click.prevent="obtenirJeton" role="button">Connexion</button>
+                <button class="button is-danger" v-on:click="annuler" role="button">Annuler</button>
             </div>
         </div>
     </div>
