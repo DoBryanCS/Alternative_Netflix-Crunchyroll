@@ -21,7 +21,9 @@ export default {
         const t = sessionStorage.getItem("token");
         if (t) {
             this.$store.state.token = t;
+            console.log(this.$store.state.token)
         }
+        
     },
     watch: {
         token(newToken) {

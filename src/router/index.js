@@ -8,6 +8,7 @@ import SeasonEpisodesView from '@/views/SeasonEpisodesView.vue';
 import DetailsEpisodeView from '@/views/DetailsEpisodeView.vue';
 import HistoryView from '@/views/HistoryView.vue';
 import ProfileView from '@/views/ProfileView.vue';
+import JouerEpisodeView from '@/views/JouerEpisodeView.vue';
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         path: '/episode/:episodeId',
         name: 'detailsEpisode',
         component: DetailsEpisodeView,
+    },
+    {
+        path: '/jouerEpisode/:episodeId',
+        name: 'jouerEpisode',
+        component: JouerEpisodeView,
     },
 ];
 

@@ -81,7 +81,7 @@ export default {
                 if (response.ok) {
                     const data = await response.json();
                     this.$root.$data.token = data.token;
-                    this.$store.state.token = this.$root.$data.toke;
+                    this.$store.state.token = this.$root.$data.token;
                     this.$router.push("/");
                 } else {
                     this.$root.$data.token = "";

@@ -15,10 +15,14 @@
                 <p class="has-text-justified" >
                     {{ detailsEpisode.plot }}
                 </p>
-                <div class="has-text-centered"  style="padding-top: 50px;">
-                    <img v-bind:alt="detailsEpisode.title" v-bind:src="detailsEpisode.imgURL"  style="position: relative;">
-                    <img id="somelement" alt="play" src="../../public/images/play.9fcb8068.png">
-                </div>
+                <router-link
+                v-bind:to="{ name: 'jouerEpisode',
+                        params: { episodeId: parseInt(detailsEpisode.episodeId) }}">
+                    <div class="has-text-centered"  style="padding-top: 50px;">
+                        <img v-bind:alt="detailsEpisode.title" v-bind:src="detailsEpisode.imgURL"  style="position: relative;">
+                        <img id="somelement" alt="play" src="../../public/images/play.9fcb8068.png">
+                    </div>
+                </router-link>
             </div>
             <p style="margin-bottom: 50px;">&nbsp;</p>
         </div>
