@@ -6,11 +6,11 @@
     <div class="section" role="liste">
         <div class="row columns is-multiline is-mobile">
             <!-- affiche la liste des items -->
-            <div v-for="t in paginatedData" v-bind:key="t.tvshowId" class="column is-three-quarters-desktop is-3-tablet is-1-mobile">
+            <div v-for="t in paginatedData" v-bind:key="t.tvshowId" class="column is-4-desktop is-3-tablet is-1-mobile">
                 <div class="card has-text-black">
                     <router-link v-bind:to="{ name: 'detailsEpisode', params: { episodeId: parseInt(t.episodeId) } }">
                     <div class="card-image">
-                        <figure class="image is-2by3">
+                        <figure>
                             <img v-bind:alt="t.tvshowTitle" v-bind:src="t.imgURL">
                         </figure>
                     </div>
