@@ -18,10 +18,12 @@ export default {
         };
     },
     mounted() {
-        const t = sessionStorage.getItem("token");
-        if (t) {
-            this.$store.state.token = t;
+        // const t = sessionStorage.getItem("token");
+        if (sessionStorage.getItem("token")) {
+            this.$store.state.token = sessionStorage.getItem("token");
             console.log(this.$store.state.token)
+            console.log(sessionStorage.getItem("token"))
+             console.log(this.$store.state.history)
         }
         
     },

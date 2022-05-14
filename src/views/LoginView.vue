@@ -80,11 +80,11 @@ export default {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    this.$root.$data.token = data.token;
-                    this.$store.state.token = this.$root.$data.token;
+                    sessionStorage.setItem('token', data.token);
+                    this.$store.state.token = data.token;
                     this.$router.push("/");
                 } else {
-                    this.$root.$data.token = "";
+                    this.$store.state.token = "";
                     this.error.push("Mauvaise authentification");
                 }
             }

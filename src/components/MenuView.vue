@@ -15,27 +15,27 @@
                 </router-link>
             </div>
             <div class="navbar-end">
-                <router-link v-if="this.$root.$data.token === ''"
+                <router-link v-if="this.$store.state.token === ''"
                                      class="navbar-item"
                                      v-bind:to="{ name: 'signup' }" alt="sign up">
                     Sign up
                 </router-link>
-                <router-link v-if="this.$root.$data.token === ''"
+                <router-link v-if="this.$store.state.token === ''"
                                      class="navbar-item"
                                      v-bind:to="{ name: 'login' }" alt="login">
                     Login
                 </router-link>
-                <router-link v-if="this.$root.$data.token !== ''"
+                <router-link v-if="this.$store.state.token !== ''"
                                 class="navbar-item"
                                 v-bind:to="{ name: 'history' }" alt="history">
                     History
                 </router-link>
-                <router-link v-if="this.$root.$data.token !== ''"
+                <router-link v-if="this.$store.state.token !== ''"
                                 class="navbar-item"
                                 v-bind:to="{ name: 'profile' }" alt="profil">
                     Profile
                 </router-link>
-                <button v-if="this.$root.$data.token !== ''"
+                <button v-if="this.$store.state.token !== ''"
                                 class="navbar-item button is-danger"
                                 v-on:click="logout" alt="log out" aria-describedby="logOut">
                     Logout
@@ -59,7 +59,8 @@ export default {
     name: 'MenuView',
     methods: {
         logout() {
-            this.$root.$data.token = '';
+            sessionStorage.setItem('token', '');
+            this.$store.state.token = '';
             this.$router.push('/');
         },
     },

@@ -5,6 +5,7 @@ export default createStore({
     state: {
         username: "",
         token: "",
+        history: [],
     },
     getters: {},
     mutations: {},
